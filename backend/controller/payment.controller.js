@@ -42,7 +42,7 @@ const paymentVarification = async (req, res) => {
         razorpay_signature,
       });
     }
-    res.redirect(`http://localhost:5174`);
+    res.redirect(`https://urban-nest-vert.vercel.app`);
   } catch (error) {
     res.status(500).send(error);
   }

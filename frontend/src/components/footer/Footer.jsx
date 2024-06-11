@@ -22,7 +22,7 @@ const Footer = () => {
           {" "}
           <a
             style={{ textDecoration: "none" }}
-            href=" http://localhost:5173"
+            href="https://urban-nest-admin.vercel.app"
             target="_blank"
           >
             Admin
