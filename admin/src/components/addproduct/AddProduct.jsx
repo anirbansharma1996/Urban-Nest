@@ -35,12 +35,12 @@ const AddProduct = () => {
   const changeHandler = (e) => {
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
   };
-
+ 
   const Add_Product = async () => {
     setError(null);
     try {
       const uploadResponse = await fetch(
-        "http://127.0.0.1:4000/api/v1/addproduct",
+        "https://urban-nest-backend-v1.onrender.com/api/v1/addproduct",
         {
           method: "POST",
           headers: {
@@ -49,9 +49,18 @@ const AddProduct = () => {
           body: JSON.stringify(productDetails),
         }
       );
-     console.log(uploadResponse)
+ 
       if (!uploadResponse.ok) {
         throw new Error(`Upload failed! Status: ${uploadResponse.status}`);
+      }else{
+        alert("Product Added Successfully")
+        setProductDetails({
+          name: "",
+          image: "",
+          category: "women",
+          new_price: "",
+          old_price: "",
+        })
       }
     } catch (err) {
       console.error("Failed to add product:", err);

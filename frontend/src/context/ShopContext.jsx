@@ -16,12 +16,12 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("http://127.0.0.1:4000/api/v1/allproducts")
+    fetch("https://urban-nest-backend-v1.onrender.com/api/v1/allproducts")
       .then((res) => res.json())
       .then((data) => setProducts(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://127.0.0.1:4000/api/v1/getcart", {
+      fetch("https://urban-nest-backend-v1.onrender.com/api/v1/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -61,7 +61,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://127.0.0.1:4000/api/v1/addtocart", {
+      fetch("https://urban-nest-backend-v1.onrender.com/api/v1/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -80,15 +80,18 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://127.0.0.1:4000/api/v1/removefromcart", {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "auth-token": `${localStorage.getItem("auth-token")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ itemId: itemId }),
-      })
+      fetch(
+        "https://urban-nest-backend-v1.onrender.com/api/v1/removefromcart",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/form-data",
+            "auth-token": `${localStorage.getItem("auth-token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemId: itemId }),
+        }
+      )
         .then((resp) => resp.json())
         .then((data) => {
           console.log(data);

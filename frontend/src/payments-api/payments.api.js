@@ -4,11 +4,16 @@ import logo from "../components/assets/logo4.jpg";
 export const checkoutHandler = async (amount) => {
   const {
     data: { key },
-  } = await axios.get("http://localhost:4000/api/v1/getkey");
+  } = await axios.get(
+    "https://urban-nest-backend-v1.onrender.com/api/v1/getkey"
+  );
 
   const {
     data: { order },
-  } = await axios.post("http://localhost:4000/api/v1/checkout", { amount });
+  } = await axios.post(
+    "https://urban-nest-backend-v1.onrender.com/api/v1/checkout",
+    { amount }
+  );
 
   const options = {
     key,
@@ -18,7 +23,8 @@ export const checkoutHandler = async (amount) => {
     description: "payments page",
     image: logo,
     order_id: order.id,
-    callback_url: "http://localhost:4000/api/v1/verification",
+    callback_url:
+      "https://urban-nest-backend-v1.onrender.com/api/v1/verification",
     prefill: {
       name: "y",
       email: "urbannest@support.com",

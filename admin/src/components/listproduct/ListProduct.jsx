@@ -4,28 +4,40 @@ import cross_icon from "../../assets/cross_icon.png";
 
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const fetchInfo = () => {
-    fetch("http://127.0.0.1:4000/api/v1/allproducts")
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
+  const fetchInfo = async () => {
+    try {
+      const res = await fetch("https://urban-nest-backend-v1.onrender.com/api/v1/allproducts");
+      const data = await res.json();
+      setAllProducts(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchInfo();
   }, []);
 
-  const removeProduct = async (id) => {
-    await fetch("http://127.0.0.1:4000/api/v1/removeproduct", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    });
 
-    fetch("http://127.0.0.1:4000/api/v1/allproducts")
+  const removeProduct = async (id) => {
+    await fetch(
+      "https://urban-nest-backend-v1.onrender.com/api/v1/removeproduct",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    );
+
+    fetch("https://urban-nest-backend-v1.onrender.com/api/v1/allproducts")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };
@@ -42,8 +54,9 @@ const ListProduct = () => {
         <p>Remove</p>
       </div>
       <div className="listproduct-allproducts">
+        {loading &&  <h3>Loading ... </h3> }
         <hr />
-        {allproducts.map((e) => {
+        {!loading && allproducts.map((e) => {
           return (
             <div>
               <div className="listproduct-format-main listproduct-format">

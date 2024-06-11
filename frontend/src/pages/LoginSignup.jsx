@@ -17,14 +17,17 @@ const LoginSignup = () => {
   const login = async () => {
     let responseData;
     try {
-      const response = await fetch("http://127.0.0.1:4000/api/v1/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://urban-nest-backend-v1.onrender.com/api/v1/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/form-data",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       responseData = await response.json();
     } catch (error) {
       console.log("Error during login:", error);
@@ -43,14 +46,17 @@ const LoginSignup = () => {
     console.log("Signup Function Executed", formData);
     let responseData;
     try {
-      const response = await fetch("http://127.0.0.1:4000/api/v1/signup", {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://urban-nest-backend-v1.onrender.com/api/v1/signup",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/form-data",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       responseData = await response.json();
     } catch (error) {
       console.log("Error during signup:", error);

@@ -7,7 +7,7 @@ const NewCollections = () => {
   const [new_collection, setNew_Collection] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:4000/api/v1/newcollections")
+    fetch("https://urban-nest-backend-v1.onrender.com/api/v1/newcollections")
       .then((response) => response.json())
       .then((data) => setNew_Collection(data));
   }, []);

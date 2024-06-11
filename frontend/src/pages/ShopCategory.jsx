@@ -8,7 +8,7 @@ const ShopCategory = (props) => {
   const [allproducts, setAllProducts] = useState([]);
 
   const fetchInfo = () => {
-    fetch("http://127.0.0.1:4000/api/v1/allproducts")
+    fetch("https://urban-nest-backend-v1.onrender.com/api/v1/allproducts")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };
